@@ -9,13 +9,13 @@ import javax.sql.rowset.FilteredRowSet;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Frontend frontend = new Frontend();
-
-        Server server = new Server(8080);
+        AllRequestsServlet allRequestsServlet = new AllRequestsServlet();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        //server.addServlet(new ServletHandler(frontend), "/author");
-        context.addServlet(new ServletHolder((Servlet) frontend), "/authorization");
+        context.addServlet(new ServletHolder(allRequestsServlet), "/*");
+
+        Server server = new Server(8080);
+        server.setHandler(context);
 
         server.start();
         server.join();
