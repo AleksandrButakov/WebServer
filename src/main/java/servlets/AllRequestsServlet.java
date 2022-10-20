@@ -86,7 +86,6 @@ public class AllRequestsServlet extends HttpServlet {
         pageVariables.put("sessionId", request.getSession().getId());
         pageVariables.put("parameters", request.getParameterMap().toString());
 
-
         return pageVariables;
     }
 }
